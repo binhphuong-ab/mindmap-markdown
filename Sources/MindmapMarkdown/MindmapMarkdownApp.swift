@@ -4,6 +4,8 @@ import SwiftUI
 struct MindmapMarkdownApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
 
+    init() { LaunchUntitledGuard.install() }
+
     var body: some Scene {
         DocumentGroup(newDocument: { MindMapDocument() }) { file in
             ContentView(document: file.document)
@@ -15,7 +17,8 @@ struct MindmapMarkdownApp: App {
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
     /// Opening a .md from Finder at launch also makes SwiftUI create an empty "Untitled"
-    /// document. Once launch settles, close it if a real file is open and it's untouched.
+    /// document. LaunchUntitledGuard keeps its window from ever showing; as a safety net,
+    /// once launch settles, close it if a real file is open and it's untouched.
     func applicationDidFinishLaunching(_ notification: Notification) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
             let docs = NSDocumentController.shared.documents
