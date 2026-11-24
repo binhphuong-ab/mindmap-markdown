@@ -1,0 +1,27 @@
+# Trip to Japan
+
+- Before you go
+  - Book flights
+  - Get a JR Pass
+  - eSIM for mobile data
+- Tokyo
+  - Shibuya crossing
+  - Senso-ji temple
+  - Tsukiji outer market
+- Kyoto
+  - Fushimi Inari gates
+  - Arashiyama bamboo grove
+  - Tea ceremony
+- Food to try
+  - Ramen
+  - Sushi
+  - Okonomiyaki
+  - Matcha desserts
+- Budget <!-- markmap: fold -->
+  - Hotels
+  - Transport
+  - Food & fun
+- Packing
+  - Comfortable shoes
+  - Power adapter
+  - Small towel
