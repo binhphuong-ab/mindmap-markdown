@@ -66,3 +66,7 @@ PNG export (2×), and a live Markdown source panel.
 
 Note: the macOS 27 SDK implements SwiftUI's `@State` as a macro whose plugin ships only
 with full Xcode, so view state lives in an `ObservableObject` (`EditorUIState`) instead.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
