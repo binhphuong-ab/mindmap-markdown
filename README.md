@@ -68,22 +68,35 @@ map; on the right is the same map as plain text.
 <img src="docs/images/markdown-panel.webp" alt="The app with the mind map on the left and its Markdown text on the right" width="900">
 </div>
 
-The format is easy to read even without the app:
+The file reads like a normal document, even without the app:
 
 ```markdown
+---
+created: 2026-11-24
+modified: 2026-11-24
+type: mindmap
+---
+
 # Trip to Japan
 
-- Tokyo
-  - Shibuya crossing
-  - Senso-ji temple
-- Food to try
-  - Ramen
-  - Sushi
+## Tokyo
+
+- Shibuya crossing
+- Senso-ji temple
+
+## Food to try
+
+- Ramen
+- Sushi
 ```
 
-The `#` line is the big idea in the middle. Each `-` line is a branch, and indenting a line
-puts it *under* the one above. That's all there is to it — so you can even write a map by hand
-in any text editor and open it in Mindmap Markdown.
+The block between the `---` lines at the top records when the map was made and last changed,
+so note apps such as Obsidian can sort and search your maps. The `#` line is the big idea in the middle. Each `##` heading is a main branch, and the `-`
+lines under it are its ideas. Indenting a `-` line puts it *under* the one above. Open the file
+in Notes, Obsidian, GitHub or any Markdown viewer and it looks like tidy notes with headings.
+
+You can also write a map by hand in any text editor and open it in Mindmap Markdown. Plain
+bullet lists work too.
 
 ---
 
@@ -219,7 +232,8 @@ That's the whole rhythm: **Tab** to go deeper, **Return** for the next idea, and
 ## Handy features
 
 - **Fold away detail.** Press **Space** on an idea to tuck its branches away. A small bubble shows
-  how many ideas are hidden; press **Space** again (or click the bubble) to bring them back.
+  how many ideas are hidden; press **Space** again (or click the bubble) to bring them back. Folding only changes the view,
+  so a map always opens with every branch showing.
 - **The top bar hides itself.** After about 3 seconds the title and buttons fade away so the map
   fills the window. Move your mouse to the **top edge** of the window to bring them back.
   Prefer it always visible? Palette button ▸ untick **Auto-hide Toolbar**.
@@ -284,17 +298,39 @@ Needs only the Xcode Command Line Tools (Swift 5.10+, macOS 14+). The app is ad-
 
 ### File format
 
-Markmap-compatible Markdown: `# Root`, then a nested `- ` list (two-space indent). Folded
-branches carry Markmap's `<!-- markmap: fold -->` marker. On input, `##`/`###` headings,
-`-`/`*`/`+`/`1.` lists, task boxes and YAML front matter are also understood.
+Plain Markdown that reads like a document:
+
+- A YAML front matter block comes first: `created` (kept from the file; for older files without
+  one, the file's creation date), `modified` (the day of the save) and `type: mindmap`. Any other
+  keys you add by hand, such as `tags`, are kept as written.
+- `# Root` is the central topic.
+- Main branches are `##` headings and their sub-branches `###` headings, but only for a group of
+  siblings where at least one has topics under it. A group of one-liners stays a bullet list.
+- Everything deeper is a nested `- ` list with two-space indent.
+- Folding is a view setting and is not saved, so the file holds nothing but your content.
+
+Markmap opens these files as they are. On input, any heading depth, `-`/`*`/`+`/`1.` lists,
+task boxes and front matter are understood, so ordinary notes open too. Maps saved by 1.0.x
+open unchanged, and their `<!-- markmap: fold -->` branches start folded.
 
 ```markdown
+---
+created: 2026-11-24
+modified: 2026-11-24
+type: mindmap
+---
+
 # Central Idea
 
-- Branch
-  - Leaf
-- Folded branch <!-- markmap: fold -->
-  - Hidden leaf
+## Branch
+
+- Leaf
+  - Smaller leaf
+
+## Branch with one-line ideas
+
+- Idea
+- Another idea
 ```
 
 ### Code layout

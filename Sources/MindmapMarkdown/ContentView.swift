@@ -75,7 +75,7 @@ struct ContentView: View {
                 .onEnded { _ in ui.pinchBase = nil })
         .toolbar { toolbar }
         .inspector(isPresented: $ui.showSource) {
-            SourcePanel(markdown: MarkdownCodec.serialize(root))
+            SourcePanel(markdown: MarkdownCodec.serialize(root, frontMatter: document.frontMatter))
                 .inspectorColumnWidth(min: 240, ideal: 320, max: 560)
         }
         .background(WindowReader { window in

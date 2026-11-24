@@ -13,8 +13,11 @@ final class MindMapDocument: ReferenceFileDocument {
     static var writableContentTypes: [UTType] { [.markdownText] }
 
     @Published private(set) var root: MindNode
+    /// The YAML block at the top of the file. Not part of undo: only `created` and any keys
+    /// the user added by hand live here, and the app never edits those.
+    private(set) var frontMatter: FrontMatter
 
-    init(root: MindNode = .sample) { self.root = root }
+    init(root: MindNode = .sample) { self.root = root; frontMatter = FrontMatter() }
 
     required init(configuration: ReadConfiguration) throws {
         guard let data = configuration.file.regularFileContents,
@@ -22,12 +25,17 @@ final class MindMapDocument: ReferenceFileDocument {
         else { throw CocoaError(.fileReadCorruptFile) }
         let name = configuration.file.filename.map { ($0 as NSString).deletingPathExtension } ?? "Central Idea"
         root = MarkdownCodec.parse(text, fallbackTitle: name)
+        let fileCreated = configuration.file.fileAttributes[FileAttributeKey.creationDate.rawValue] as? Date
+        frontMatter = FrontMatter.parse(text, fileCreated: fileCreated)
     }
 
-    func snapshot(contentType: UTType) throws -> MindNode { root }
+    struct Snapshot { var root: MindNode; var frontMatter: FrontMatter }
 
-    func fileWrapper(snapshot: MindNode, configuration: WriteConfiguration) throws -> FileWrapper {
-        FileWrapper(regularFileWithContents: Data(MarkdownCodec.serialize(snapshot).utf8))
+    func snapshot(contentType: UTType) throws -> Snapshot { Snapshot(root: root, frontMatter: frontMatter) }
+
+    func fileWrapper(snapshot: Snapshot, configuration: WriteConfiguration) throws -> FileWrapper {
+        let text = MarkdownCodec.serialize(snapshot.root, frontMatter: snapshot.frontMatter)
+        return FileWrapper(regularFileWithContents: Data(text.utf8))
     }
 
     /// Applies an edit as one undoable step. Registering the undo is also what marks the

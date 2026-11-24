@@ -8,7 +8,7 @@ APP_NAME="Mindmap Markdown"          # what users see
 EXEC_NAME="MindmapMarkdown"          # SwiftPM product / executable (no spaces)
 BUNDLE_ID="com.binhphuong-ab.mindmapmarkdown"
 BUNDLE="$APP_NAME.app"
-VERSION="1.0.1"
+VERSION="1.0.2"
 
 echo "==> swift build"
 swift build -c release
