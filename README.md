@@ -6,6 +6,10 @@
 
 <img src="docs/images/hero-aurora.webp" alt="A colourful mind map titled 'Trip to Japan' with branches for Before you go, Tokyo, Kyoto, Food to try, Budget and Packing" width="900">
 
+### [⬇️ Download for Mac (Apple Silicon)](https://github.com/binhphuong-ab/mindmap-markdown/releases/latest)
+
+<sub>Free · macOS 14 Sonoma or later · Apple M1/M2/M3/M4 · 0.5 MB</sub>
+
 </div>
 
 ---
@@ -87,13 +91,35 @@ in any text editor and open it in Mindmap Markdown.
 
 ### What you need
 
-- A Mac running **macOS 14 Sonoma or newer**.
-- About 10 minutes for the one-time setup below.
+- A Mac with **Apple Silicon** — an M1, M2, M3, M4 or newer chip.
+  Not sure? Click the Apple menu  ▸ **About This Mac**: the *Chip* line should start with "Apple".
+- **macOS 14 Sonoma or newer.**
 
-### Install (one time)
+### Install — the easy way (download)
 
-There's no App Store version yet, so you build the app on your own Mac. It sounds technical,
-but it's just four commands you copy and paste — the Mac does the rest.
+1. Go to the **[latest release](https://github.com/binhphuong-ab/mindmap-markdown/releases/latest)**
+   and click **Mindmap-Markdown-…-AppleSilicon.zip** to download it.
+2. Open your **Downloads** folder and double-click the zip to unzip it.
+3. Drag **Mindmap Markdown** into your **Applications** folder.
+4. Double-click it to open.
+
+#### The first time you open it
+
+The app is free and isn't sold through Apple's App Store, so macOS asks you to confirm it
+**once**:
+
+1. macOS says it *couldn't verify* "Mindmap Markdown". Click **Done** (don't move it to the Bin).
+2. Open **System Settings ▸ Privacy & Security** and scroll down to the *Security* section.
+3. Next to *"Mindmap Markdown" was blocked to protect your Mac*, click **Open Anyway**,
+   then confirm with your password or Touch ID.
+
+That's it — from now on it opens normally, like any other app.
+
+<details>
+<summary><b>Install — the other way (build it yourself)</b></summary>
+
+If you'd rather build the app from the source code (for example to get the very latest
+changes), it takes four commands you copy and paste.
 
 1. **Open Terminal.** Press **⌘ Space**, type `Terminal`, and press **Return**.
 
@@ -106,7 +132,7 @@ but it's just four commands you copy and paste — the Mac does the rest.
    A window pops up — click **Install** and wait until it finishes (a few minutes).
    If it says the tools are *already installed*, that's fine — go to the next step.
 
-3. **Download Mindmap Markdown.** Copy these two lines into Terminal and press **Return**:
+3. **Download the source code.** Copy these two lines into Terminal and press **Return**:
 
    ```bash
    git clone https://github.com/binhphuong-ab/mindmap-markdown.git
@@ -120,9 +146,9 @@ but it's just four commands you copy and paste — the Mac does the rest.
    ```
 
    After a minute or so you'll see `installed /Applications/Mindmap Markdown.app`. Done! 🎉
+   (An app you build yourself doesn't need the "Open Anyway" step.)
 
-You'll now find **Mindmap Markdown** in your **Applications** folder and in Launchpad.
-You can close Terminal.
+</details>
 
 ### Open it
 
@@ -231,12 +257,14 @@ Press **⌘Z** to undo. You can undo many steps back.
 Every map needs one central idea, so it can't be deleted — but you can rename it any time.
 
 **How do I update to a newer version?**
-Open Terminal and run these two lines:
+Download the newest zip from the [releases page](https://github.com/binhphuong-ab/mindmap-markdown/releases/latest)
+and drag the app into Applications again, choosing **Replace**. Your maps are separate files, so
+they aren't touched. (If you built the app yourself: in Terminal run
+`cd mindmap-markdown && git pull && ./build.sh`.)
 
-```bash
-cd mindmap-markdown && git pull
-./build.sh
-```
+**Does it work on Intel Macs?**
+The download is for Apple Silicon Macs only. On an Intel Mac you can still build it yourself
+(see *Install — the other way* above).
 
 ---
 
