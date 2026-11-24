@@ -5,7 +5,7 @@ import AppKit
 /// been away from that strip for `hideDelay` seconds.
 final class ChromeAutoHider {
     static let revealZone: CGFloat = 56      // ≈ height of the title bar + toolbar
-    static let hideDelay: TimeInterval = 5
+    static let hideDelay: TimeInterval = 3
 
     var enabled = true {
         didSet {

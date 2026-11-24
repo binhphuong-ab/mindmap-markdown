@@ -220,7 +220,7 @@ That's the whole rhythm: **Tab** to go deeper, **Return** for the next idea, and
 
 - **Fold away detail.** Press **Space** on an idea to tuck its branches away. A small bubble shows
   how many ideas are hidden; press **Space** again (or click the bubble) to bring them back.
-- **The top bar hides itself.** After a few seconds the title and buttons fade away so the map
+- **The top bar hides itself.** After about 3 seconds the title and buttons fade away so the map
   fills the window. Move your mouse to the **top edge** of the window to bring them back.
   Prefer it always visible? Palette button ▸ untick **Auto-hide Toolbar**.
 - **File name follows your big idea.** Rename the central idea and the file on your Mac is renamed
